@@ -2,6 +2,14 @@
 
 All notable changes follow Semantic Versioning.
 
+## 1.1.1 - 2026-08-10
+
+### Fixed
+
+- Spring Boot auto-configuration now compiles against a Java 8-compatible API baseline.
+- Spring remains optional and is not pulled into Java or Android consumers.
+- Restored successful CI verification on JDK 11 while retaining Spring Boot 4 runtime compatibility.
+
 ## 1.1.0 - 2026-08-09
 
 ### Changed

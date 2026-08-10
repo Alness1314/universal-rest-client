@@ -32,7 +32,7 @@ Después agrega la dependencia:
 <dependency>
     <groupId>com.alness</groupId>
     <artifactId>universal-rest-client</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -263,7 +263,7 @@ RestClient client = RestClients.builder()
 
 ```kotlin
 dependencies {
-    implementation("com.alness:universal-rest-client:1.1.0")
+    implementation("com.alness:universal-rest-client:1.1.1")
 }
 ```
 

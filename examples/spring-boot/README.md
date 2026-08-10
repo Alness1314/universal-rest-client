@@ -10,7 +10,7 @@ anotaciones pertenecen a Hilt en Android.
 <dependency>
     <groupId>com.alness</groupId>
     <artifactId>universal-rest-client</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 

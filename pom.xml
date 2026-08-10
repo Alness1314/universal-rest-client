@@ -6,7 +6,7 @@
 
     <groupId>com.alness</groupId>
     <artifactId>universal-rest-client</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>Universal REST Client</name>
@@ -28,7 +28,7 @@
         <connection>scm:git:https://github.com/Alness1314/universal-rest-client.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/Alness1314/universal-rest-client.git</developerConnection>
         <url>https://github.com/Alness1314/universal-rest-client</url>
-        <tag>v1.1.0</tag>
+        <tag>v1.1.1</tag>
     </scm>
 
     <distributionManagement>
@@ -56,7 +56,8 @@
         <kotlin.version>2.2.20</kotlin.version>
         <coroutines.version>1.11.0</coroutines.version>
         <gson.version>2.14.0</gson.version>
-        <spring.boot.version>4.1.0</spring.boot.version>
+        <!-- Compile-only baseline keeps the optional integration usable on Java 8+. -->
+        <spring.boot.version>2.7.18</spring.boot.version>
         <maven.source.version>3.3.1</maven.source.version>
         <maven.javadoc.version>3.11.2</maven.javadoc.version>
         <maven.gpg.version>3.2.7</maven.gpg.version>

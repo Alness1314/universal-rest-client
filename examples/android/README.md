@@ -6,7 +6,7 @@ Versión mínima soportada: Android API 21.
 
 ```kotlin
 dependencies {
-    implementation("com.alness:universal-rest-client:1.1.0")
+    implementation("com.alness:universal-rest-client:1.1.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
     implementation("com.google.dagger:hilt-android:2.60.1")
     ksp("com.google.dagger:hilt-android-compiler:2.60.1")
