@@ -24,8 +24,6 @@ jobs:
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
-          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Validate tag matches project version
         shell: bash
@@ -35,7 +33,6 @@ jobs:
           case "${VERSION}" in *-SNAPSHOT) exit 1 ;; esac
 
       - name: Verify and publish to GitHub Packages
-        run: mvn --batch-mode --no-transfer-progress -Prelease deploy
+        run: mvn --batch-mode --no-transfer-progress deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
