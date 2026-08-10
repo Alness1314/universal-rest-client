@@ -4,13 +4,13 @@ Minimum supported Android version: API 21.
 
 ```kotlin
 dependencies {
-    implementation("com.alness:universal-rest-client:1.0.0")
+    implementation("com.alness:universal-rest-client:1.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
 }
 ```
 
 ```kotlin
-val client = RestClientBuilder.builder().build()
+val client = RestClients.create()
 
 lifecycleScope.launch {
     val request = HttpRequest.builder()

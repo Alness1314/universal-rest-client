@@ -59,7 +59,7 @@ los contratos públicos.
 
 ## Principios
 
-1. La librería no conoce Spring ni Android.
+1. El núcleo no usa Spring ni Android; la autoconfiguración Spring es opcional.
 2. Los objetos públicos que representan datos son inmutables.
 3. Headers y cuerpos binarios se copian defensivamente.
 4. Las URLs se representan con `URI`, no se dividen manualmente.
@@ -79,5 +79,6 @@ OkHttpRestClient
 OkHttp / pool de conexiones
 ```
 
-Spring, CDI, Micrometer y OpenTelemetry se conectan mediante puertos públicos y
-permanecen fuera del núcleo portable.
+Spring se conecta mediante una autoconfiguración aislada y opcional. CDI,
+Micrometer y OpenTelemetry se conectan mediante puertos públicos. Ninguna de
+estas integraciones interviene en el funcionamiento para Java o Android.

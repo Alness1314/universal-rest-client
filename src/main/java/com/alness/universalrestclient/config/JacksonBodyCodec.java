@@ -7,6 +7,7 @@ import com.alness.universalrestclient.api.TypeRef;
 import com.alness.universalrestclient.exception.SerializationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.util.Objects;
 
-/** Jackson adapter. Jackson remains an optional dependency of the library. */
+/** Default JSON adapter backed by Jackson. */
 public final class JacksonBodyCodec implements BodyCodec {
     private final ObjectMapper objectMapper;
 
@@ -26,6 +27,7 @@ public final class JacksonBodyCodec implements BodyCodec {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         return new JacksonBodyCodec(mapper);
     }
 

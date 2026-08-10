@@ -1,18 +1,18 @@
 # Spring Boot example
 
-Declare `com.alness:universal-rest-client:1.0.0` and expose the framework-neutral
-client as a regular bean:
+Declare `com.alness:universal-rest-client:1.1.0`. The library automatically
+exposes a `RestClient` bean, so services only inject it:
 
 ```java
-@Configuration
-class HttpClientConfiguration {
-    @Bean
-    RestClient restClient(ObjectMapper objectMapper) {
-        return RestClientBuilder.builder()
-                .bodyCodec(new JacksonBodyCodec(objectMapper))
-                .build();
+@Service
+class PokemonService {
+    private final RestClient restClient;
+
+    PokemonService(RestClient restClient) {
+        this.restClient = restClient;
     }
 }
 ```
 
-The library does not require component scanning, bean overriding or Spring Cloud.
+Use a `RestClientCustomizer` bean for shared timeouts, interceptors or retries.
+Declaring an application-owned `RestClient` bean disables the default one.

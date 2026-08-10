@@ -2,6 +2,15 @@
 
 All notable changes follow Semantic Versioning.
 
+## 1.1.0 - 2026-08-09
+
+### Changed
+
+- Jackson JSON support is ready by default and is included transitively.
+- Added `RestClients.create()` as the zero-configuration Java and Android entry point.
+- Added optional Spring Boot auto-configuration for direct `RestClient` injection.
+- Applications can still replace the codec, customize the builder or provide their own bean.
+
 ## 1.0.0 - 2026-08-06
 
 ### Added

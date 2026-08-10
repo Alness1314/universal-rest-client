@@ -61,6 +61,20 @@ class JacksonBodyCodecTest {
     }
 
     @Test
+    void defaultMapperIgnoresFieldsNotDeclaredByTheConsumerDto() {
+        JacksonBodyCodec codec = JacksonBodyCodec.withDefaults();
+
+        Event event = codec.deserialize(
+                "{\"name\":\"release\",\"date\":\"2026-08-09\",\"extra\":true}"
+                        .getBytes(StandardCharsets.UTF_8),
+                TypeRef.of(Event.class),
+                "application/json");
+
+        assertThat(event.getName()).isEqualTo("release");
+        assertThat(event.getDate()).isEqualTo(LocalDate.of(2026, 8, 9));
+    }
+
+    @Test
     void reportsMalformedJsonAsSerializationFailure() {
         JacksonBodyCodec codec = JacksonBodyCodec.withDefaults();
 

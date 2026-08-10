@@ -12,8 +12,8 @@ inicial no existe suficiente complejidad para justificar varios artefactos.
 ## Decisión
 
 Publicar un solo JAR y separar contratos, configuración, errores, implementación
-interna y utilidades de prueba mediante paquetes. El artefacto no tendrá
-dependencias de producción en esta etapa.
+interna y utilidades de prueba mediante paquetes. Las integraciones de framework
+deben ser opcionales y mantenerse fuera de los contratos del núcleo.
 
 ## Consecuencias
 

@@ -7,7 +7,6 @@ import com.alness.universalrestclient.api.RestClient;
 import com.alness.universalrestclient.api.ResponseInterceptor;
 import com.alness.universalrestclient.api.RestClientCustomizer;
 import com.alness.universalrestclient.internal.okhttp.OkHttpRestClient;
-import com.alness.universalrestclient.internal.RawBodyCodec;
 import com.alness.universalrestclient.internal.retry.RetryingRestClient;
 import com.alness.universalrestclient.internal.async.ExecutorRestClient;
 
@@ -20,7 +19,7 @@ import java.util.concurrent.ForkJoinPool;
 /** Public framework-neutral entry point for creating the default HTTP client. */
 public final class RestClientBuilder {
     private RestClientConfig config = RestClientConfig.defaults();
-    private BodyCodec bodyCodec = new RawBodyCodec();
+    private BodyCodec bodyCodec = JacksonBodyCodec.withDefaults();
     private final List<RequestInterceptor> requestInterceptors =
             new ArrayList<RequestInterceptor>();
     private final List<ResponseInterceptor> responseInterceptors =

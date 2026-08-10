@@ -1,24 +1,26 @@
 # Integraciones opcionales
 
 Universal REST Client se mantiene como un solo JAR portable. Los frameworks se
-conectan mediante `RestClientCustomizer`, `ExchangeObserver`,
-`MetricsCollector`, `TraceContextProvider` y los contratos de codec.
+conectan mediante contratos opcionales y no son necesarios en Java o Android.
 
 ## Spring Boot
 
+Spring Boot detecta la autoconfiguración y crea un bean `RestClient` cuando la
+aplicación no proporciona uno:
+
 ```java
-@Configuration
-class RestClientConfiguration {
-    @Bean
-    RestClient universalRestClient(List<RestClientCustomizer> customizers) {
-        RestClientBuilder builder = RestClientBuilder.builder();
-        customizers.forEach(builder::apply);
-        return builder.build();
+@Service
+class RemoteService {
+    private final RestClient restClient;
+
+    RemoteService(RestClient restClient) {
+        this.restClient = restClient;
     }
 }
 ```
 
-Spring es responsabilidad de la aplicación y no se agrega al artefacto portable.
+La preconfiguración se realiza mediante beans `RestClientCustomizer`. Un bean
+`RestClient` definido por la aplicación reemplaza el predeterminado.
 
 ## Jakarta CDI
 
@@ -26,7 +28,7 @@ Spring es responsabilidad de la aplicación y no se agrega al artefacto portable
 @Produces
 @ApplicationScoped
 RestClient universalRestClient() {
-    return RestClientBuilder.builder().build();
+    return RestClients.create();
 }
 ```
 
@@ -38,8 +40,6 @@ Implemente `MetricsCollector` usando `MeterRegistry` y regístrelo así:
 builder.addObserver(new MetricsObserver(micrometerCollector));
 ```
 
-La URI recibida está sanitizada y no incluye credenciales.
-
 ## OpenTelemetry
 
 Implemente `TraceContextProvider` a partir del span actual:
@@ -50,11 +50,8 @@ builder.addRequestInterceptor(new W3cTraceContextInterceptor(provider));
 
 ## Gson
 
-Gson es opcional. La aplicación que lo elija debe declarar Gson y configurar:
+Gson es opcional y reemplaza el codec predeterminado cuando se configura:
 
 ```java
 builder.bodyCodec(new GsonBodyCodec(customGson));
 ```
-
-Jackson continúa disponible mediante `JacksonBodyCodec`. Moshi puede agregarse
-implementando `BodyCodec` sin modificar el transporte.

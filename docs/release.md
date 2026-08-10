@@ -5,7 +5,7 @@
 3. Run the independent consumer test under `examples/java`.
 4. Merge the reviewed change into `main`.
 5. Create and push a signed or annotated tag matching the POM, for example
-   `v1.0.0`.
+   `v1.1.0`.
 6. The release workflow validates the tag and deploys the artifacts to GitHub
    Packages. GitHub Actions supplies the required `GITHUB_TOKEN`.
 
